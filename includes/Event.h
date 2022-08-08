@@ -1,7 +1,7 @@
 #ifndef EVENTO_H
 #define EVENTO_H
 
-#include "../glob.h"
+#include "glob.h"
 
 class Evento{
 

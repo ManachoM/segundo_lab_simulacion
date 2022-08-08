@@ -22,7 +22,7 @@ class Agricultor : public process
 
         std::map<int, Terreno> terrenos;
 
-        std::map<int, Stock > stock;
+        std::map<int, Stock> stock;
 
         bool tiene_almacenamiento;
 
@@ -41,11 +41,9 @@ class Agricultor : public process
 
 
     public:
-        Agricultor(const std::string& name, int _id) : process(name){
-            id_agricultor = _id;
-        };
+        Agricultor(const std::string& _name, int _id) : process(_name){};
 
-        void inner_body();
+        void inner_body() override;
 
         int getId() { return this->id_agricultor; };
 
@@ -58,6 +56,18 @@ class Agricultor : public process
         std::map<int, int> getPerdidas() { return this->perdidas; }
 
         std::map<int, Transaccion> getHistorial() { return this->historial; }
+
+        void setTerrenos(std::map<int, Terreno> _terrenos);
+
+        void setStock(std::map<int, Stock> _stock);
+
+        void setVendidas(std::map<int, int> _vendidas);
+
+        void setPerdidas(std::map<int, int> _perdidas);
+
+        void setHistorial(std::map<int, Transaccion> _historial);
+
+        void setEstado(estado _state);
 
 
 

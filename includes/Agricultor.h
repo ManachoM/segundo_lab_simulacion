@@ -9,11 +9,13 @@
 
 
 #include <string.h>
-#include "../glob.h"
-#include "../utils/Stock.h"
-#include "../utils/Terreno.h"
-#include "../utils/Almacenamiento.h"
-#include "../utils/Transaccion.h"
+#include <vector>
+#include "glob.h"
+#include "utils/Stock.h"
+#include "utils/Terreno.h"
+#include "utils/Almacenamiento.h"
+#include "utils/Transaccion.h"
+#include "Event.h"
 
 class Agricultor : public process
 {
@@ -34,6 +36,8 @@ class Agricultor : public process
 
         std::map<int, Transaccion> historial;
 
+        std::vector<Evento> eventos;
+
         enum estado {INICIO, SIEMBRA, COSECHA, VENTA, PREPARACION_TERRENO};
 
 
@@ -42,8 +46,6 @@ class Agricultor : public process
 
     public:
         Agricultor(const std::string& _name, int _id) : process(_name){};
-
-        void inner_body() override;
 
         int getId() { return this->id_agricultor; };
 
@@ -69,6 +71,8 @@ class Agricultor : public process
 
         void setEstado(estado _state);
 
+    protected:
+        void inner_body( void ) override;
 
 
 };

@@ -16,11 +16,18 @@
 #include "utils/Almacenamiento.h"
 #include "utils/Transaccion.h"
 #include "Event.h"
+#include "Feriante.h"
+
+class Feriante;
 
 class Agricultor : public process
 {
     private:
         int id_agricultor;
+
+        int num_productos;
+        
+        const static int max_productos = 1000;
 
         std::map<int, Terreno> terrenos;
 
@@ -39,6 +46,9 @@ class Agricultor : public process
         std::vector<Evento> eventos;
 
         enum estado {INICIO, SIEMBRA, COSECHA, VENTA, PREPARACION_TERRENO};
+
+        handle<Feriante> feriante;
+
 
 
 
@@ -71,7 +81,12 @@ class Agricultor : public process
 
         void setEstado(estado _state);
 
+        bool compraFeriante();
+
+        void setFeriante(handle<Feriante> _feriante);
+
     protected:
+
         void inner_body( void ) override;
 
 

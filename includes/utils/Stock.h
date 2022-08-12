@@ -33,7 +33,7 @@ class Stock
 
         void setQuantity(double _quantity);
 
-        ~Stock();
+        
 };
 
 

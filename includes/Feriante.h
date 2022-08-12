@@ -25,11 +25,7 @@ class Feriante : public process
 
     public:
 
-        Feriante(const std::string&_name , int _id, handle<Agricultor> _agr) : process(_name)
-        {
-            this->agricultor = _agr;
-            this->estado = Estado::COMPRANDO_AGR;
-        }
+        Feriante(const std::string&_name , int _id, handle<Agricultor> _agr); 
 
         int getId();
 

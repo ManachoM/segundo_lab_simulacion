@@ -3,7 +3,7 @@ LIBRARY=-L/usr/local/include/libcppsim
 INCLUDE=-I/usr/local/include/libcppsim
 CXXFLAGS = -std=c++14 -O3 -Wall -w -lm -g -lcppsim $(INCLUDE) $(LIBRARY)
 
-main: Agricultor.o Feriante.o Evento.o Stock.o
+main: Agricultor.o Feriante.o Evento.o Stock.o Generador.o
 	$(CXX) -o main src/main.cc  $(wildcard obj/*.o) $(CXXFLAGS)
  
 Agricultor.o: Feriante.o Evento.o Stock.o
@@ -18,4 +18,15 @@ Evento.o:
 Stock.o:
 	$(CXX) -c -o obj/Stock.o src/Stock.cc $(CXXFLAGS)
 
+Generador.o: Feriante.o
+	$(CXX) -c -o obj/Generador.o src/Generador.cc $(CXXFLAGS)
+
+
+.PHONY: clean
+clean:
+	rm -f obj/*.o
+
+all:
+	make clean
+	make
 

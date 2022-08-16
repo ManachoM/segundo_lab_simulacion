@@ -4,13 +4,15 @@
 #include "glob.h"
 #include "Feriante.h"
 #include "Agricultor.h"
+#include "Generador.h"
 
 class Sistema : public process
 {
     public:
-        Sistema (const std::string& _name, double _simLen) : process(_name)
+        Sistema (const std::string& _name, double _simLen, int _numEventos) : process(_name)
         {
             this->simLen = _simLen;
+            this->numEventos = _numEventos;
         }
 
     protected:
@@ -18,6 +20,7 @@ class Sistema : public process
 
     private:
         double simLen;
+        int numEventos;
         handle<Agricultor> agr;
         handle<Feriante> fer;
 

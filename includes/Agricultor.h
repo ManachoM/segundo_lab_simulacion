@@ -18,7 +18,13 @@
 #include "Event.h"
 #include "Feriante.h"
 
+#define TIEMPO_PREPARAR_TERRENO 3
+#define TIEMPO_SIEMBRA 20
+#define TIEMPO_COSECHA 15
+
 class Feriante;
+
+ enum EstadoAgricultor {INICIO, SIEMBRA, COSECHA, VENTA, PREPARACION_TERRENO};
 
 class Agricultor : public process
 {
@@ -45,10 +51,15 @@ class Agricultor : public process
 
         std::vector<Evento> eventos;
 
-        enum estado {INICIO, SIEMBRA, COSECHA, VENTA, PREPARACION_TERRENO};
+        EstadoAgricultor estado;
 
         handle<Feriante> feriante;
 
+        void prepararTerreno();
+
+        void sembrar();
+
+        void cosechar();
 
 
 
@@ -59,7 +70,7 @@ class Agricultor : public process
         {
             this->id_agricultor = _id;
             this->tiene_almacenamiento = false;
-            this->setEstado(Agricultor::estado::INICIO);
+            this->setEstado(EstadoAgricultor::INICIO);
         };
 
         int getId() { return this->id_agricultor; };
@@ -84,12 +95,13 @@ class Agricultor : public process
 
         void setHistorial(std::map<int, Transaccion> _historial);
 
-        void setEstado(estado _state);
+        void setEstado(EstadoAgricultor _state);
 
         bool compraFeriante();
 
         void setFeriante(handle<Feriante> _feriante);
 
+       
     protected:
 
         void inner_body( void ) override;

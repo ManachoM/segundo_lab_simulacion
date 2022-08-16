@@ -17,13 +17,16 @@ class Evento{
         int caller_type;
 
         int event_type;
+
+        string description;
         
     public:
-        Evento(int _caller_id, int _caller_type, int _event_type) : event_id(++_curr_id)
+        Evento(int _caller_id, int _caller_type, int _event_type, const string _descr = "") : event_id(++_curr_id)
         {
             this->caller_id = _caller_id;
             this->caller_type = _caller_type;
             this->event_type = _event_type;
+            this->description = _descr;
         }
 
         int getCallerId();
